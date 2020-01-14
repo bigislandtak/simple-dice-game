@@ -1,10 +1,3 @@
-
-/*
- * OSHIMA_TAKEYUKI
- * CS55
- * PROF. DEHKHODA
- */
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -36,10 +29,8 @@ public class DiceGame extends JFrame implements ActionListener {
 	
 	private int betTotal;
 
-	
 	public DiceGame() {
 		// Container to store everything needed for the frame
-
 		container = getContentPane();
 		// set out the layout
 		container.setLayout(new FlowLayout());
@@ -51,7 +42,6 @@ public class DiceGame extends JFrame implements ActionListener {
 		showBalance.setFont(new Font("Default", Font.CENTER_BASELINE, 20));
 		// add it to the container
 		container.add(showBalance);
-
 		// create a label
 		showBetTotal = new JLabel("                        Total Bet: $" + betTotal + "                     ");
 		// set text color
@@ -59,11 +49,6 @@ public class DiceGame extends JFrame implements ActionListener {
 		showBetTotal.setFont(new Font("Default", Font.CENTER_BASELINE, 20));
 		// add it to the container
 		container.add(showBetTotal);
-		// create a text field
-		//textfield = new JTextField(10);
-		// add it to the container
-		
-		//container.add(textfield);
 		
 		dices = new ImageIcon[6];
 		dices[0] = new ImageIcon("diceOne.png");
@@ -73,11 +58,11 @@ public class DiceGame extends JFrame implements ActionListener {
 		dices[4] = new ImageIcon("diceFive.png");
 		dices[5] = new ImageIcon("diceSix.png");
 		
-		one = new ImageIcon(/*getClass().getResource(*/"chipOne.png"/*)*/);
-		five = new ImageIcon(/*getClass().getResource(*/"chipFive.png"/*)*/);
-		ten = new ImageIcon(/*getClass().getResource(*/"chipTen.png"/*)*/);
-		twentyFive = new ImageIcon(/*getClass().getResource(*/"chipTwentyFive.png"/*)*/);
-		hundred = new ImageIcon(/*getClass().getResource(*/"chipHundred.png"/*)*/);
+		one = new ImageIcon("chipOne.png");
+		five = new ImageIcon("chipFive.png");
+		ten = new ImageIcon("chipTen.png");
+		twentyFive = new ImageIcon("chipTwentyFive.png");
+		hundred = new ImageIcon("chipHundred.png");
 		
 		betOne = new JButton(one);
 		betFive = new JButton(five);
@@ -91,9 +76,8 @@ public class DiceGame extends JFrame implements ActionListener {
 		betOne.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		    	if(balance < 1) {
+		    	if(balance < 1)
 		    		JOptionPane.showMessageDialog(null, "You don'thave enough chips!");
-		    	}
 		    	else {
 		    		betTotal += 1;
 			    	balance -= 1;
@@ -107,9 +91,8 @@ public class DiceGame extends JFrame implements ActionListener {
 		betFive.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		    	if(balance < 5) {
+		    	if(balance < 5)
 		    		JOptionPane.showMessageDialog(null, "You don'thave enough chips!");
-		    	}
 		    	else {
 		    		betTotal += 5;
 			    	balance -= 5;
@@ -123,9 +106,8 @@ public class DiceGame extends JFrame implements ActionListener {
 		betTen.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		    	if(balance < 10) {
+		    	if(balance < 10)
 		    		JOptionPane.showMessageDialog(null, "You don'thave enough chips!");
-		    	}
 		    	else {
 		    		betTotal += 10;
 		    		balance -= 10;
@@ -139,9 +121,8 @@ public class DiceGame extends JFrame implements ActionListener {
 		betTwentyFive.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		    	if(balance < 25) {
+		    	if(balance < 25)
 		    		JOptionPane.showMessageDialog(null, "You don'thave enough chips!");
-		    	}
 		    	else {
 		    		betTotal += 25;
 		    		balance -= 25;
@@ -155,9 +136,8 @@ public class DiceGame extends JFrame implements ActionListener {
 		betHundred.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		    	if(balance < 100) {
+		    	if(balance < 100)
 		    		JOptionPane.showMessageDialog(null, "You don'thave enough chips!");
-		    	}
 		    	else {
 		    		betTotal += 100;
 		    		balance -= 100;
@@ -211,9 +191,8 @@ public class DiceGame extends JFrame implements ActionListener {
 		int dice1 = 1 + (int) (Math.random() * 6);
 		int dice2 = 1 + (int) (Math.random() * 6);
 		
-		if(betTotal == 0) {
-    		JOptionPane.showMessageDialog(null, "Place your bet first!");
-		}
+		if(betTotal == 0)
+    			JOptionPane.showMessageDialog(null, "Place your bet first!");
 		else if((dice1 + dice2) == 7 || (dice1 + dice2) == 11) {
 			JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, dices[dice1-1]);
 			JOptionPane.showMessageDialog(null, "", "", JOptionPane.INFORMATION_MESSAGE, dices[dice2-1]);
@@ -229,31 +208,26 @@ public class DiceGame extends JFrame implements ActionListener {
 		showBalance.setText("                Chip Balance: $" + balance + "               ");
 		showBetTotal.setText("                        Total Bet: $" + betTotal + "                     ");		
 		if(balance == 0) {
-    		JOptionPane.showMessageDialog(null, "Game Over!");
-    		balance = 1000;
-    		showBalance.setText("                Chip Balance: $" + balance + "               ");
+			JOptionPane.showMessageDialog(null, "Game Over!");
+			balance = 1000;
+			showBalance.setText("                Chip Balance: $" + balance + "               ");
 		}
 	}
 	
 	class RoundedBorder implements Border {
-
 	    private int radius;
-
 
 	    RoundedBorder(int radius) {
 	        this.radius = radius;
 	    }
 
-
 	    public Insets getBorderInsets(Component c) {
 	        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
 	    }
 
-
 	    public boolean isBorderOpaque() {
 	        return true;
 	    }
-
 
 	    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
 	        g.drawRoundRect(x, y, width-1, height-1, radius, radius);
